@@ -1,0 +1,17 @@
+#app{
+	margin: 20px;
+}
+.spices_list{
+	float: left;
+	width: 200px;
+}
+.spice_detail{
+	width: 800px;
+	margin-left: 230px;
+}
+.spice_form{
+	padding: 20px;
+}
+.pic_desc_input{
+	margin-bottom: 10px;
+}

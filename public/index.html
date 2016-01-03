@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>spices-atlas</title>
+	<link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+	<div id="app">
+		<h1>spices-atlas manager</h1>
+		<p>已收录香料 {{ spices.length }} 种</p>
+		<div class="panel panel-default spices_list">
+			<div class="panel-heading">List Of Spices</div>
+			<div class="panel-body">
+				<input type="text" class="form-control" v-model="filter_keywords">
+			</div>
+
+			<div class="list-group">
+				<button type="button" class="list-group-item" v-for="spice in spices | filterBy filter_keywords in 'name'" @click="choseSpice(spice.id)">{{ spice.name.cn }}</button>
+			</div>
+		</div>
+		<div class="panel panel-default spice_detail">
+			<div class="panel-heading">{{editStatus.text}} <button v-show="!editStatus.isAdding" type="button" @click="choseAdd">切换到添加状态</button></div>
+			<form class="spice_form" action="/add" method="post" enctype="multipart/form-data">
+			  <div class="form-group">
+			    <label for="cn_name">中文名</label>
+			    <input type="text" class="form-control" name="cn_name" v-bind:value="curSpice.name.cn">
+			  </div>
+			  <div class="form-group">
+			    <label for="nick_name">又名</label>
+			    <input type="text" class="form-control" name="nick_name" placeHolder="分号隔开">
+			  </div>
+			  <div class="form-group">
+			    <label for="en_name">英文名</label>
+			    <input type="text" class="form-control" name="en_name" v-bind:value="curSpice.name.en">
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="exampleInputFile">图片</label>
+			    <div class="row">
+				  <div class="col-sm-6 col-md-4" v-for="pic in curSpice.pic">
+				    <div class="thumbnail">
+				      <img v-bind:src="pic.url" alt="...">
+				      <div class="caption">
+				        <input type="text" name="picDesc" v-model="pic.desc" class="form-control pic_desc_input">
+				        <p><a href="#" class="btn btn-default" role="button">删除</a>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-sm-6 col-md-4">
+				    <div class="thumbnail">
+				      <input type="file" name="picture" class="picFile">
+				      <div class="caption">
+				        <input type="text" value="" name="picDesc" class="form-control pic_desc_input"  placeHolder="图片描述">
+				        <p><a href="#" class="btn btn-primary" role="button">添加图片</a></p>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <button type="submit" @click="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+	<script src="./js/bundle.js"></script>
+</body>
+</html>
