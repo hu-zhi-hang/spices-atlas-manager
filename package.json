@@ -24,6 +24,8 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "multer": "^1.1.0",
+    "pinyin": "^2.6.2",
+    "qiniu": "^6.1.9",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7"
   },

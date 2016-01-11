@@ -1,8 +1,11 @@
+var os = require('os');
+var path = require('path');
 var exec = require('child_process').exec;
 var fs = require('fs-extra');
 var express = require('express');
 var bodyParser = require("body-parser");
 var multer  = require('multer');
+var file_upload = require('./lib/file_upload.js');
 var upload = multer({ dest: 'public/data/imgs/upload/' });
 var SpiceModel = require('./model/spice.model.js');
 var app = express();
@@ -29,6 +32,10 @@ function startServer() {
 	app.post('/add', function (req, res) {
 	    var postdata = JSON.parse(req.body.spice);
 	    var spiceModel = new SpiceModel();
+	    //to do deal the picture
+	    // console.log(postdata);return;
+	    file_upload.upload(postdata.pic);
+	    return;
 	  	spiceModel.add(postdata);
 	});
 
@@ -43,7 +50,7 @@ function startServer() {
 	    		return;
 	    	}
 	    	console.log('rename file ok');
-	    	var pic_url = new_path.replace('public\\', '');
+	    	var pic_url = new_path.replace('public' + path.sep, '');
 	    	res.end(pic_url);
 	    })
 	});
@@ -51,9 +58,13 @@ function startServer() {
 	var server = app.listen(3000, function () {
 		var host = server.address().address;
 		var port = server.address().port;
+		//the command to open broswer
+		var lunch_cmd = 'start http://127.0.0.1:';
+		(os.platform() === 'linux') && (lunch_cmd = 'sensible-browser http://127.0.0.1:');
+
 		console.log('local server listening at http://%s:%s', host, port);
 		console.log('starting broswer....');
-		exec('start http://127.0.0.1:' + port, function(){
+		exec(lunch_cmd + port, function(){
 			console.log('broswer started');
 		})
 	});

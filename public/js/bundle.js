@@ -12270,6 +12270,7 @@
 				},
 				"en": "anise",
 				"cn": "八角",
+				"nickname": "小茴香",
 				"py4Filter": "bajiao"
 			},
 			"pic": [
@@ -12279,7 +12280,7 @@
 				},
 				{
 					"url": "data/imgs/bajiao01.jpg",
-					"desc": "lingyige的八角果实"
+					"desc": "八角花"
 				}
 			]
 		},
@@ -12354,51 +12355,6 @@
 					"desc": "没错这就是草果"
 				}
 			]
-		},
-		{
-			"name": {
-				"cn": "啦啦啦",
-				"py4Filter": "",
-				"pinyin": "",
-				"en": "enryt"
-			},
-			"pic": [
-				{
-					"url": "data\\imgs\\upload\\e90ea25d1e9b1729c90a0c336eefaae8banner1.jpg",
-					"desc": "ssssssssss"
-				}
-			],
-			"id": 5
-		},
-		{
-			"name": {
-				"cn": "啥啥",
-				"py4Filter": "",
-				"pinyin": "",
-				"en": "545"
-			},
-			"pic": [
-				{
-					"url": "data\\imgs\\upload\\03e99189a10893d673e426df5a48cdd1banner1.jpg",
-					"desc": "试试"
-				}
-			],
-			"id": 5
-		},
-		{
-			"name": {
-				"cn": "速度",
-				"py4Filter": "",
-				"pinyin": "",
-				"en": "13263"
-			},
-			"pic": [
-				{
-					"url": "data\\imgs\\upload\\323b63e5641b296f54e73d4b27af0bf7banner1.jpg",
-					"desc": "妹妹"
-				}
-			],
-			"id": 6
 		}
 	];
 

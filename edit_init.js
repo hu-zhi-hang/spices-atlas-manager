@@ -2,7 +2,8 @@ var fs = require('fs-extra');
 var editStart = require('./edit');
 var path = require('path');
 var dataPath = path.resolve(__dirname, '../spices-atlas/data/spices.json');
-var localDataPath = path.dirname(__filename, 'data/spices.json');
+var localDataPath = path.resolve(__dirname, './data/spices.json');
+
 //查找data.js
 fs.exists(dataPath, initer);
 
