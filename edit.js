@@ -5,6 +5,7 @@ var fs = require('fs-extra');
 var express = require('express');
 var bodyParser = require("body-parser");
 var multer  = require('multer');
+var pinyin  = require('pinyin');
 var file_upload = require('./lib/file_upload.js');
 var upload = multer({ dest: 'public/data/imgs/upload/' });
 var SpiceModel = require('./model/spice.model.js');
@@ -34,9 +35,11 @@ function startServer() {
 	    var spiceModel = new SpiceModel();
 	    //to do deal the picture
 	    // console.log(postdata);return;
-	    file_upload.upload(postdata.pic);
-	    return;
-	  	spiceModel.add(postdata);
+	    file_upload.upload(postdata.pic, function(new_files) {
+	    	postdata.pic = 	new_files;
+	    	console.log('updaload finished..');
+	  		spiceModel.add(postdata);
+	    });
 	});
 
 
@@ -54,6 +57,18 @@ function startServer() {
 	    	res.end(pic_url);
 	    })
 	});
+
+	app.get('/pinyin', function(req, res) {
+		var words = req.query.words;
+		if (words) {
+			var pinyinRes = pinyin(words, {
+				heteronym: true,
+				// segment: true
+			});
+			res.json(pinyinRes);
+		}
+	});
+
 
 	var server = app.listen(3000, function () {
 		var host = server.address().address;

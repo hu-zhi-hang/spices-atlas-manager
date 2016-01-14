@@ -21,7 +21,8 @@ var vm = new Vue({
 		editStatus: {
 			text: '正在添加',
 			isAdding: true	
-		}
+		},
+		pinyinRes: []
 	},
 	methods: {
 		choseSpice: function(id) {
@@ -39,7 +40,13 @@ var vm = new Vue({
 			this.editStatus.text = '正在添加';
 			this.curSpice = curSpiceModel;
 		},
-		submit: submit
+		submit: submit,
+		getPinyin: function(e) {
+			e.preventDefault();
+			getPinyin(function(res) {
+				vm.pinyinRes = res;
+			});
+		}
 	},
 	ready: function() {
 		var $file_upload = $(".picFile");
@@ -77,9 +84,12 @@ function submit(e) {
 	var formdata = $spice_form.serializeArray();
 	data.name.cn = getFormValue('cn_name', formdata);
 	data.name.en = getFormValue('en_name', formdata);
-	data.name.pinyin = '';
-	data.name.py4Filter = '';
+	data.name.pinyin = getFormValue('pinyin', formdata, true);
+	getPinyin(1, function(res){
+		data.name.py4Filter = res;	
+	});
 	data.pic = vm.curSpice.pic;
+	
 	var data = JSON.stringify(vm.curSpice);
 	$.ajax({
 		url: '/add',
@@ -92,10 +102,41 @@ function submit(e) {
 	})
 }
 
-function getFormValue(key, src) {
+function getFormValue(key, src, isArray) {
+	isArray || (isArray = false);
+	var resArray = [];
 	for (var i = 0; i < src.length; i++) {
-		if (key === src[i].name) {
-			return src[i].value;
+		if (src[i].name.indexOf(key) != -1) {
+			if (!isArray) {
+				return src[i].value;
+			} else {
+				resArray.push(src[i].value);
+				continue;
+			}
 		}
 	}
+	return resArray;
+}
+//type: 0,带音标;1,不带音标
+function getPinyin(type, callback) {
+	if (typeof type === 'function') {
+		callback = type;
+		type = 0;
+	}
+	$.ajax({
+		type: "get",
+		dataType: "json",
+		url: "/pinyin",
+		data: {
+			words: $("#cnName").val(),
+			type: type
+		},
+		success: function(res) {
+			callback(res);
+		},
+		error: function(err) {
+			console.error(err);
+		}
+
+	})
 }
