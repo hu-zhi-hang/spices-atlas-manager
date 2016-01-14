@@ -61,10 +61,16 @@ function startServer() {
 	app.get('/pinyin', function(req, res) {
 		var words = req.query.words;
 		if (words) {
-			var pinyinRes = pinyin(words, {
+			var pinyinRes = {};
+			pinyinRes.pinyin = pinyin(words, {
 				heteronym: true,
 				// segment: true
 			});
+			pinyinRes.py4Filter = pinyin(words, {
+				style: pinyin.STYLE_NORMAL,				
+				segment: true
+			});
+
 			res.json(pinyinRes);
 		}
 	});

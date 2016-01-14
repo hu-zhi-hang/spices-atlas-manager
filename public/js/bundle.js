@@ -68,7 +68,8 @@
 				text: '正在添加',
 				isAdding: true	
 			},
-			pinyinRes: []
+			pinyinRes: [],
+			pinyinRes_filter: ""
 		},
 		methods: {
 			choseSpice: function(id) {
@@ -90,7 +91,9 @@
 			getPinyin: function(e) {
 				e.preventDefault();
 				getPinyin(function(res) {
-					vm.pinyinRes = res;
+					vm.pinyinRes = res.pinyin;
+					console.log();
+					vm.pinyinRes_filter = res.py4Filter.join("");
 				});
 			}
 		},
@@ -131,10 +134,8 @@
 		data.name.cn = getFormValue('cn_name', formdata);
 		data.name.en = getFormValue('en_name', formdata);
 		data.name.pinyin = getFormValue('pinyin', formdata, true);
-		getPinyin(1, function(res){
-			data.name.py4Filter = res;	
-		});
 		data.pic = vm.curSpice.pic;
+		
 		
 		var data = JSON.stringify(vm.curSpice);
 		$.ajax({
@@ -164,18 +165,14 @@
 		return resArray;
 	}
 	//type: 0,带音标;1,不带音标
-	function getPinyin(type, callback) {
-		if (typeof type === 'function') {
-			callback = type;
-			type = 0;
-		}
+	function getPinyin(callback) {
+		
 		$.ajax({
 			type: "get",
 			dataType: "json",
 			url: "/pinyin",
 			data: {
-				words: $("#cnName").val(),
-				type: type
+				words: $("#cnName").val()
 			},
 			success: function(res) {
 				callback(res);
