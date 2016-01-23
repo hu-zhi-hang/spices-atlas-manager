@@ -37,7 +37,7 @@ function startServer() {
 	    // console.log(postdata);return;
 	    file_upload.upload(postdata.pic, function(new_files) {
 	    	postdata.pic = 	new_files;
-	    	console.log('updaload finished..');
+	    	console.log('upload all images to storage server finished..');
 	  		spiceModel.add(postdata);
 	    });
 	});
@@ -52,7 +52,7 @@ function startServer() {
 	    		console.log('rename file error: ' + err);
 	    		return;
 	    	}
-	    	console.log('rename file ok');
+
 	    	var pic_url = new_path.replace('public' + path.sep, '');
 	    	res.end(pic_url);
 	    })
@@ -84,9 +84,8 @@ function startServer() {
 		(os.platform() === 'linux') && (lunch_cmd = 'sensible-browser http://127.0.0.1:');
 
 		console.log('local server listening at http://%s:%s', host, port);
-		console.log('starting broswer....');
-		exec(lunch_cmd + port, function(){
-			console.log('broswer started');
-		})
+		// exec(lunch_cmd + port, function(){
+		// 	console.log('broswer started');
+		// })
 	});
 }

@@ -46,7 +46,6 @@ var vm = new Vue({
 			e.preventDefault();
 			getPinyin(function(res) {
 				vm.pinyinRes = res.pinyin;
-				console.log();
 				vm.pinyinRes_filter = res.py4Filter.join("");
 			});
 		}
@@ -88,6 +87,8 @@ function submit(e) {
 	data.name.cn = getFormValue('cn_name', formdata);
 	data.name.en = getFormValue('en_name', formdata);
 	data.name.pinyin = getFormValue('pinyin', formdata, true);
+	data.name.py4Filter = getFormValue('py4Filter', formdata);
+	data.name.nickname = getFormValue('nick_name', formdata);
 	data.pic = vm.curSpice.pic;
 	
 	

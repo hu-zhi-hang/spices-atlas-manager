@@ -12,13 +12,12 @@ module.exports = function(dataPath) {
 			var maxId = getMaxId(spices);
 			newData.id = maxId + 1;
 			spices.push(newData);
-			console.log('add new data ok');
 			updateFile(spices, function(err) {
 				if (err) {
 					console.log(err);
 					return;
 				}
-				console.log('updateFile ok');
+				console.log('update local spices.json ok');
 			});
 		});
 	}
