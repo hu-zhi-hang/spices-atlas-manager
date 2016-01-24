@@ -1,11 +1,30 @@
 [
   {
-    "id": 1,
     "name": {
-      "pinyin": {
-        "八": "bā",
-        "角": "jiǎo"
-      },
+      "cn": "胡椒",
+      "py4Filter": "hujiao",
+      "pinyin": [
+        "hú",
+        "jiāo"
+      ],
+      "en": "",
+      "nickname": "古月；黑川；白川"
+    },
+    "pic": [
+      {
+        "url": "http://7xlxdo.com1.z0.glb.clouddn.com/spice/f08099132610d5fb5d97bdb81f6961d91352256628Gqfmevgy.jpg",
+        "desc": ""
+      }
+    ],
+    "id": 1
+  },
+  {
+    "id": 2,
+    "name": {
+      "pinyin": [
+        "bā",
+        "jiǎo"
+      ],
       "en": "anise",
       "cn": "八角",
       "nickname": "小茴香",
@@ -13,123 +32,36 @@
     },
     "pic": [
       {
-        "url": "data/imgs/bajiao.jpg",
+        "url": "http://7xlxdo.com1.z0.glb.clouddn.com/spice/bajiao.jpg",
         "desc": "干燥的八角果实"
       },
       {
-        "url": "data/imgs/bajiao01.jpg",
+        "url": "http://7xlxdo.com1.z0.glb.clouddn.com/spice/bajiao01.jpg",
         "desc": "八角花"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": {
-      "pinyin": {
-        "桂": "guì",
-        "皮": "pí"
-      },
-      "en": "Cinnamomum cassia",
-      "cn": "桂皮",
-      "py4Filter": "guipi"
-    },
-    "pic": [
-      {
-        "url": "data/imgs/guipi.jpg",
-        "desc": "没错这就是桂皮"
       }
     ]
   },
   {
     "id": 3,
     "name": {
-      "pinyin": {
-        "孜": "zī",
-        "然": "rán"
-      },
-      "en": "cumin",
-      "cn": "孜然",
-      "py4Filter": "ziran"
-    },
-    "pic": [
-      {
-        "url": "data/imgs/ziran.jpg",
-        "desc": "没错这就是孜然"
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": {
-      "pinyin": {
-        "肉": "ròu",
-        "蔻": "kòu"
-      },
-      "en": "Nutmeg",
-      "cn": "肉蔻",
-      "py4Filter": "roukou"
-    },
-    "pic": [
-      {
-        "url": "data/imgs/roukou.jpg",
-        "desc": "没错这就是roudoukou"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": {
-      "pinyin": {
-        "草": "cǎo",
-        "果": "guǒ"
-      },
-      "en": "Amomum tsaoko",
-      "cn": "草果",
-      "py4Filter": "caoguo"
-    },
-    "pic": [
-      {
-        "url": "data/imgs/caoguo.jpg",
-        "desc": "没错这就是草果"
-      }
-    ]
-  },
-  {
-    "name": {
-      "cn": "肉桂",
-      "py4Filter": "",
       "pinyin": [
-        "ròu",
-        "guì"
+        "bā",
+        "jiǎo"
       ],
-      "en": ""
+      "en": "anise",
+      "cn": "八角",
+      "nickname": "小茴香",
+      "py4Filter": "bajiao"
     },
     "pic": [
       {
-        "url": "http://7xlxdo.com1.z0.glb.clouddn.com/spice/ed82ebb193f59305dd88d4e87ba7e8378428789_10.jpg",
-        "desc": ""
-      }
-    ],
-    "id": 6
-  },
-  {
-    "name": {
-      "cn": "芫荽子",
-      "py4Filter": "yansuizi",
-      "pinyin": [
-        "yuán",
-        "suī",
-        "zǐ"
-      ],
-      "en": "",
-      "nickname": "胡荽；香菜"
-    },
-    "pic": [
+        "url": "data/imgs/bajiao01.jpg",
+        "desc": "八角花"
+      },
       {
-        "url": "http://7xlxdo.com1.z0.glb.clouddn.com/spice/bbc8bf49d2d10ead9c48151a7db30f508428789_16.jpg",
-        "desc": "干的"
+        "url": "data/imgs/bajiao.jpg",
+        "desc": "干燥的八角果实"
       }
-    ],
-    "id": 7
+    ]
   }
 ]

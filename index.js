@@ -90,16 +90,24 @@ function submit(e) {
 	data.name.py4Filter = getFormValue('py4Filter', formdata);
 	data.name.nickname = getFormValue('nick_name', formdata);
 	data.pic = vm.curSpice.pic;
+	data.id = vm.curSpice.id;
 	
 	
 	var data = JSON.stringify(vm.curSpice);
+	var action = vm.isAdding ? '/add' : '/update';
 	$.ajax({
-		url: '/add',
+		url: action,
 		type: 'post',
 		dataType: 'json',
 		data: 'spice=' + data,
 		success: function(res){
-			console.log(res);
+			if (res.success) {
+				alert('update success!!');
+				location.reload();
+			} else {
+				console.log(res.error);
+				alert('update error, check console');
+			}
 		}
 	})
 }

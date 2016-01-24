@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = function(dataPath) {
 	this.dataPath = dataPath || path.resolve(__dirname, '../data/spices.json');
 	dataPath = this.dataPath;
-	this.add = function(newData) {
+	this.add = function(newData, callback) {
 		this.getLocalData(function(err, spices){
 			if (err) {
 				console.log(err);
@@ -14,13 +14,35 @@ module.exports = function(dataPath) {
 			spices.push(newData);
 			updateFile(spices, function(err) {
 				if (err) {
-					console.log(err);
+					callback(err);
 					return;
 				}
 				console.log('update local spices.json ok');
+				callback(null);
 			});
 		});
 	}
+
+	this.update = function(newData, callback) {
+		this.getLocalData(function(err, spices){
+			if (err) {
+				console.log(err);
+				return;
+			}
+			var index = getSingleSpice(newData.id, spices);
+			spices[index] = newData;
+			console.log(newData);
+			updateFile(spices, function(err) {
+				if (err) {
+					callback(err);
+					return;
+				}
+				console.log('update local spices.json ok');
+				callback(null);
+			});
+		});
+	}
+
 
 	this.getLocalData = function(callback) {
 		fs.readJson(this.dataPath, function(err, spices) {
@@ -48,6 +70,13 @@ module.exports = function(dataPath) {
 				return;
 			}
 			callback(null);
+		})
+	}
+	function getSingleSpice (id, spices) {
+		spices.forEach(function(spice, index){
+			if (spice.id === id) {
+				return index;
+			}		
 		})
 	}
 

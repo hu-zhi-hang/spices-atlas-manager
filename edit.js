@@ -38,9 +38,43 @@ function startServer() {
 	    file_upload.upload(postdata.pic, function(new_files) {
 	    	postdata.pic = 	new_files;
 	    	console.log('upload all images to storage server finished..');
-	  		spiceModel.add(postdata);
+	  		spiceModel.add(postdata, function(err) {
+	  			var resData = {};
+	  			if (err) {
+	  				console.log('update database fail: ' + err);
+	  				resData.success = false;
+	  				resData.error = err;
+	  				res.json(resData);
+	  				return;
+	  			}
+	  			resData.success = true;
+	  			res.json(resData);
+	  		})
+
 	    });
 	});
+
+	app.post('/update', function (req, res) {
+		var postdata = JSON.parse(req.body.spice);
+	    var spiceModel = new SpiceModel();
+	    file_upload.upload(postdata.pic, function(new_files) {
+	    	postdata.pic = new_files;
+	    	console.log('upload all images to storage server finished..');
+	    	spiceModel.update(postdata, function(err) {
+	    		var resData = {};
+	  			if (err) {
+	  				console.log('update database fail: ' + err);
+	  				resData.success = false;
+	  				resData.error = err;
+	  				res.json(resData);
+	  				return;
+	  			}
+	  			resData.success = true;
+	  			res.json(resData);
+	    	})
+	    })
+
+	})
 
 
 	app.post('/addpic', upload.single('picture'), function (req, res) {
